@@ -5,6 +5,10 @@ queries, executes them against a database, and returns a plain-English
 answer. Built with **LangGraph** to demonstrate a real agentic workflow —
 not just a single LLM call, but a graph with a retry/self-correction loop.
 
+Live demo:-text-to-sql ∙ main ∙ app/streamlit_app.py
+
+
+
 ---
 
 ## Why this project
