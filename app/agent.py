@@ -27,6 +27,14 @@ load_dotenv()  # reads the .env file in the project folder and loads GROQ_API_KE
 DB_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "company.db")
 MAX_RETRIES = 3
 
+# On a fresh deployment (e.g. Streamlit Cloud), the .db file won't exist yet
+# since it's excluded from git. Build it automatically the first time.
+if not os.path.exists(DB_PATH):
+    import sys
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "data"))
+    from setup_db import create_database
+    create_database()
+
 llm = ChatGroq(
     model=os.environ.get("GROQ_MODEL", "openai/gpt-oss-120b"),
     temperature=0,
